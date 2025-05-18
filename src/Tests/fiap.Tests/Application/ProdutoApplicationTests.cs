@@ -44,6 +44,20 @@ namespace fiap.Tests.Application
             Assert.True(result);
         }
         [Fact]
+        public async Task InserirProduto_ComFalha()
+        {
+            var _repo = new Mock<IProdutoRepository>();
+            var _logger = new Mock<Serilog.ILogger>();
+
+            _repo.SetupSequence(x => x.Inserir(produto))
+                 .ThrowsAsync(new System.Exception("Erro ao inserir"));
+
+            ProdutoApplication app = new(_logger.Object, _repo.Object);
+            var ex = await Assert.ThrowsAsync<System.Exception>(() => app.Inserir(produto));
+
+            Assert.Equal("Erro ao inserir", ex.Message);
+        }
+        [Fact]
         public async Task Obter_OkAsync()
         {
             var _repo = new Mock<IProdutoRepository>();
@@ -58,6 +72,18 @@ namespace fiap.Tests.Application
             Assert.NotNull(result);
         }
         [Fact]
+        public async Task Obter_Comfalha()
+        {
+            var _repo = new Mock<IProdutoRepository>();
+            var _logger = new Mock<Serilog.ILogger>();
+
+            _repo.SetupSequence(x => x.Obter())
+                .ThrowsAsync(new System.Exception("Erro"));
+            ProdutoApplication app = new(_logger.Object, _repo.Object);
+            var ex = await Assert.ThrowsAsync<System.Exception>(() => app.Obter());
+            Assert.Equal("Erro", ex.Message);
+        }
+        [Fact]
         public async Task ObterProdutosPorId_OkAsync()
         {
             var _repo = new Mock<IProdutoRepository>();
@@ -70,6 +96,19 @@ namespace fiap.Tests.Application
             var result = await app.Obter(1);
 
             Assert.NotNull(result);
+        }
+        [Fact]
+        public async Task ObterProdutosPorId_Comfalha()
+        {
+            var _repo = new Mock<IProdutoRepository>();
+            var _logger = new Mock<Serilog.ILogger>();
+
+            _repo.SetupSequence(x => x.Obter(1))
+                .ThrowsAsync(new System.Exception("Erro"));
+
+            ProdutoApplication app = new(_logger.Object, _repo.Object);
+            var ex = await Assert.ThrowsAsync<System.Exception>(() => app.Obter(1));
+            Assert.Equal("Erro", ex.Message);
         }
 
         [Fact]
@@ -86,6 +125,19 @@ namespace fiap.Tests.Application
 
             Assert.NotNull(result);
         }
+        [Fact]
+        public async Task ObterProdutosPorCategoria_ComFalha()
+        {
+            var _repo = new Mock<IProdutoRepository>();
+            var _logger = new Mock<Serilog.ILogger>();
+
+            _repo.SetupSequence(x => x.ObterProdutosPorCategoria(1))
+               .ThrowsAsync(new System.Exception("Erro"));
+
+            ProdutoApplication app = new(_logger.Object, _repo.Object);
+            var ex = await Assert.ThrowsAsync<System.Exception>(() => app.ObterProdutosPorCategoria(1));
+            Assert.Equal("Erro", ex.Message);
+        }
 
         [Fact]
         public async Task Atualizar_OkAsync()
@@ -100,6 +152,19 @@ namespace fiap.Tests.Application
             var result = await app.Atualizar(produto);
 
             Assert.True(result);
+        }
+        [Fact]
+        public async Task Atualizar_Comfalha()
+        {
+            var _repo = new Mock<IProdutoRepository>();
+            var _logger = new Mock<Serilog.ILogger>();
+
+            _repo.SetupSequence(x => x.Atualizar(produto))
+               .ThrowsAsync(new System.Exception("Erro"));
+
+            ProdutoApplication app = new(_logger.Object, _repo.Object);
+            var ex = await Assert.ThrowsAsync<System.Exception>(() => app.Atualizar(produto));
+            Assert.Equal("Erro", ex.Message);
         }
     }
 }

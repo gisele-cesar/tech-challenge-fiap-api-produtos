@@ -92,6 +92,12 @@ app.Use(async (context, next) =>
     await next();
 });
 
+app.UseCors(option => option
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+);
+
 app.UsePathBase("/api-produtos");
 app.MapControllers();
 app.Map("/api-produtos", app1 => app1

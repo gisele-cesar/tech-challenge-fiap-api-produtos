@@ -87,9 +87,9 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
-app.UsePathBase("api-produtos");
+app.UsePathBase("/api-produtos");
 app.MapControllers();
-app.Map("/", app1 => app1
+app.Map("/api-produtos", app1 => app1
 .Run(ctx => ctx.Response
 .WriteAsync($"path-Base: {ctx.Request.PathBase} Path: {ctx.Request.Path}")));
 

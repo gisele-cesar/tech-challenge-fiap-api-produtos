@@ -43,6 +43,7 @@ spec:
 # spec:
 #   containers:
 #   - name: produtos
+  
 #     image: DOCKER_IMAGE
 #     resources:
 #       requests:

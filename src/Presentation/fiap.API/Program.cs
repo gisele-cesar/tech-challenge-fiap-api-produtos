@@ -58,7 +58,7 @@ builder.Services.AddSingleton<Func<IDbConnection>>(sp =>
     connectionString = connectionString
     .Replace("__server__", secret.Host)
     .Replace("__port__", secret.Port)
-    .Replace("__db__", secret.DbInstanceIdentifier)
+    .Replace("__db__", "ProdutoDB")
     .Replace("__userdb__", secret.UserName)
     .Replace("__senha__", secret.Password);
 

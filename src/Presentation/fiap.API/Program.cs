@@ -46,9 +46,9 @@ builder.Services.AddSingleton<Func<IDbConnection>>(sp =>
     var connectionString = configuration.GetConnectionString("fiap.sqlServer");
     var secretService = sp.GetRequiredService<ISecretManagerService>();
 
-    var secret = secretService.ObterSecret<SecretDbConnect>("dev/fiap/sql-rds").Result;
+    var secret = secretService.ObterSecret<SecretDbConnect>("dev/fiap/sql-rds")?.Result;
 
-    if (secret.Host is null)
+    if (secret?.Host is null)
     {
         Console.WriteLine("Não foi possível recuperar a secret - Console.WriteLine"); ;
         Log.Information("Não foi possível recuperar a secret Serilog");

@@ -86,6 +86,11 @@ app.UseEndpoints(endpoints =>
     endpoints.MapHealthChecks("api/metrics");
     endpoints.MapControllers();
 });
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("X-Fame-Options", "DENY");
+    await next();
+});
 
 app.UsePathBase("/api-produtos");
 app.MapControllers();

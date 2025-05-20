@@ -1,9 +1,11 @@
 ﻿using fiap.Application.Interfaces;
 using fiap.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace fiap.API.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class ProdutoController : ControllerBase
@@ -25,6 +27,7 @@ namespace fiap.API.Controllers
         /// <response code = "500">Se houver erro de conexão com banco de dados</response>
         // GET:api/<ProdutoController>
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get()
         {
             try
@@ -93,6 +96,7 @@ namespace fiap.API.Controllers
         /// <response code = "500">Se houver erro de conexão com banco de dados</response>
         // POST: api/<ProdutoController>/5
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] Produto obj)
         {
             try

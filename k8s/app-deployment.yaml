@@ -33,25 +33,5 @@ spec:
         ports:
         - containerPort: 80
         env: 
-        - name: "ASPNETCORE_ENVIROMENT"
+        - name: "ASPNETCORE_ENVIRONMENT"
           value: "Development"
-# ---
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: produtos-pod
-# spec:
-#   containers:
-#   - name: produtos
-  
-#     image: DOCKER_IMAGE
-#     resources:
-#       requests:
-#         memory: "50Mi"
-#       limits:
-#         memory: "100Mi"
-#     ports:
-#     - containerPort: 80
-#     env: 
-#     - name: "ASPNETCORE_ENVIROMENT"
-#       value: "Development"

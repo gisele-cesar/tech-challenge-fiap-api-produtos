@@ -78,7 +78,7 @@ app.UseSwaggerUI(opt =>
 
 app.UseHttpsRedirection();
 app.UseSerilogRequestLogging();
-app.UseAuthorization();
+/// app.UseAuthorization();
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {

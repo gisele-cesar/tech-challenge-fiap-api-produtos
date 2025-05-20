@@ -1,14 +1,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: fiap-fase-3-hpa
+  name: produtos-hpa
   labels: 
-     app: fiap-fase-3
+     app: produtos
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: fiap-fase-3
+    name: produtos
   minReplicas: 1
   maxReplicas: 10
   metrics:
@@ -17,4 +17,4 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 50
+          averageUtilization: 70

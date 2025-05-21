@@ -15,7 +15,7 @@ spec:
         app: produtos
         version: v01
     spec:
-      serviceAccountName: produtos-account
+      serviceAccountName: produtos-sa
       imagePullSecrets: 
         - name: docker-auth
       restartPolicy: Always

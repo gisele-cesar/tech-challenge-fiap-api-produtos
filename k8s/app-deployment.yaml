@@ -1,7 +1,7 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: produtos
+  name: produtos-deployment
   labels: 
      app: produtos
 spec:

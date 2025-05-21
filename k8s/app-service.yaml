@@ -6,7 +6,7 @@ metadata:
     app: produtos
 spec:
   selector:
-    app: produtos 
+    app: produtos
   ports:
   - name: http
     port: 80

@@ -1,0 +1,37 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: produtos-deployment
+  labels: 
+     app: produtos
+spec:
+  selector:
+    matchLabels:
+      app: produtos
+      version: v01
+  template:
+    metadata:
+      labels:
+        app: produtos
+        version: v01
+    spec:
+      serviceAccountName: produtos-sa
+      imagePullSecrets: 
+        - name: docker-auth
+      restartPolicy: Always
+      containers:
+      - name: produtos
+        image: DOCKER_IMAGE
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "200Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 80
+        env: 
+        - name: "ASPNETCORE_ENVIRONMENT"
+          value: "Development"
